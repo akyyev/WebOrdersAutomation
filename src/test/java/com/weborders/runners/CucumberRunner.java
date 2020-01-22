@@ -7,10 +7,12 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class )
 @CucumberOptions(
-        features = "",
-        glue = "",
+        features = "src/test/java/resources/features",
+        glue = "com/weborders/stepdefinitions",
+//        dryRun = true,
         dryRun = false,
-        tags = "",
+//        tags = "@view_all_orders",
+//        tags = "login",
         plugin = {
                 "html:target/default-cucumber-reports",
                 "json:target/cucumber.json",
