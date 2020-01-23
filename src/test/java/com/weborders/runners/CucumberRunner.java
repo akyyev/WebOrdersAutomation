@@ -9,7 +9,6 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/java/resources/features",
         glue = "com/weborders/stepdefinitions",
-//        dryRun = true,
         dryRun = false,
 //        tags = "@view_all_orders",
 //        tags = "login",
@@ -20,7 +19,5 @@ import org.junit.runner.RunWith;
         }
 )
 public class CucumberRunner {
-
-
 
 }
