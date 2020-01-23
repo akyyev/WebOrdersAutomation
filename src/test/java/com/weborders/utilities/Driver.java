@@ -9,7 +9,13 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.BrowserType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 
 public class Driver {
@@ -63,6 +69,28 @@ public class Driver {
                     }
                     WebDriverManager.getInstance(SafariDriver.class).setup();
                     driverPool.set(new SafariDriver());
+                    break;
+
+                case "remote_chrome":
+                    try {
+                        WebDriverManager.chromedriver().setup();
+                        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+                        desiredCapabilities.setBrowserName(BrowserType.CHROME);
+                        driverPool.set(new RemoteWebDriver(new URL(ConfigurationReader.getProperty("node")+"/wd/hub"),desiredCapabilities));
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
+                case "remote_firefox":
+                    try {
+                        WebDriverManager.firefoxdriver().setup();
+                        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+                        desiredCapabilities.setBrowserName(BrowserType.FIREFOX);
+                        driverPool.set(new RemoteWebDriver(new URL(ConfigurationReader.getProperty("node")+"/wd/hub"),desiredCapabilities));
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
                     break;
             }
         }
